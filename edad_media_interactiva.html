@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Edad Media — Viaje al Pasado</title>
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f4e4b8;
+    --parchment-dark: #e8d08a;
+    --ink: #2a1a06;
+    --ink-light: #4a3010;
+    --gold: #c8920a;
+    --gold-bright: #f0b429;
+    --stone: #7a6a52;
+    --stone-light: #a89070;
+    --crimson: #8b1a1a;
+    --crimson-light: #c0392b;
+    --forest: #1a4a1a;
+    --sky: #1a3a5c;
+    --shadow: rgba(20,10,0,0.6);
+    --glow: rgba(200,146,10,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a0f05;
+    font-family: 'Crimson Text', serif;
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='28'%3E%3Cpath d='M10 2 L18 24 L10 19 L2 24 Z' fill='%23c8920a' stroke='%232a1a06' stroke-width='1.5'/%3E%3C/svg%3E") 10 2, auto;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(200,146,10,0.15) 0%, transparent 60%),
+      linear-gradient(180deg, #0d0702 0%, #1a0f05 40%, #0d0702 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; padding: 2rem;
+  }
+
+  .stars {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+
+  .star {
+    position: absolute; width: 2px; height: 2px; background: #f0d080;
+    border-radius: 50%; animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+
+  .castle-silhouette {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 220px;
+    background: #0a0602;
+    clip-path: polygon(
+      0% 100%, 0% 80%, 3% 80%, 3% 60%, 5% 60%, 5% 50%, 6% 50%, 6% 40%, 7% 40%, 7% 30%,
+      8% 30%, 8% 40%, 9% 40%, 9% 30%, 10% 30%, 10% 40%, 11% 40%, 11% 50%, 13% 50%, 13% 60%,
+      15% 60%, 15% 50%, 17% 50%, 17% 40%, 18% 40%, 18% 30%, 19% 30%, 19% 40%, 20% 40%,
+      20% 30%, 21% 30%, 21% 40%, 22% 40%, 22% 60%, 25% 60%, 25% 70%,
+      35% 70%, 35% 55%, 36% 55%, 36% 45%, 37% 45%, 37% 35%, 38% 35%, 38% 45%,
+      39% 45%, 39% 35%, 40% 35%, 40% 45%, 41% 45%, 41% 55%, 42% 55%, 42% 70%,
+      45% 70%, 45% 75%, 55% 75%, 55% 70%,
+      58% 70%, 58% 55%, 59% 55%, 59% 45%, 60% 45%, 60% 35%, 61% 35%, 61% 45%,
+      62% 45%, 62% 35%, 63% 35%, 63% 45%, 64% 45%, 64% 55%, 65% 55%, 65% 70%,
+      75% 70%, 75% 60%, 78% 60%, 78% 50%, 80% 50%, 80% 40%, 81% 40%, 81% 30%,
+      82% 30%, 82% 40%, 83% 40%, 83% 30%, 84% 30%, 84% 40%, 85% 40%, 85% 60%,
+      87% 60%, 87% 50%, 89% 50%, 89% 60%, 93% 60%, 93% 80%, 100% 80%, 100% 100%
+    );
+  }
+
+  .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; }
+
+  .era-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #3a1a02, #6a3010);
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    padding: 0.4rem 1.5rem; border-radius: 2px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px var(--glow);
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif; font-weight: 900;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    color: var(--parchment);
+    text-shadow: 0 0 40px rgba(200,146,10,0.5), 0 4px 8px rgba(0,0,0,0.8);
+    line-height: 1.1; margin-bottom: 0.5rem;
+  }
+
+  .hero h1 span { color: var(--gold-bright); }
+
+  .hero-subtitle {
+    font-family: 'Crimson Text', serif; font-style: italic;
+    font-size: 1.3rem; color: var(--stone-light);
+    margin-bottom: 2.5rem; letter-spacing: 1px;
+  }
+
+  .date-banner {
+    background: linear-gradient(90deg, transparent, rgba(200,146,10,0.2), transparent);
+    border-top: 1px solid rgba(200,146,10,0.4);
+    border-bottom: 1px solid rgba(200,146,10,0.4);
+    padding: 0.6rem 2rem; margin-bottom: 2rem;
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem;
+  }
+
+  .scroll-btn {
+    background: linear-gradient(135deg, var(--crimson), #5a0f0f);
+    color: var(--parchment); border: 2px solid var(--gold);
+    font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600;
+    padding: 1rem 2.5rem; cursor: pointer; border-radius: 3px;
+    letter-spacing: 2px; text-transform: uppercase;
+    transition: all 0.3s; position: relative; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(139,26,26,0.4);
+  }
+
+  .scroll-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .scroll-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(139,26,26,0.6); }
+  .scroll-btn:hover::before { left: 100%; }
+
+  /* MAIN CONTAINER */
+  .main { background: var(--parchment); position: relative; }
+
+  /* TEXTURE OVERLAY */
+  .main::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.04;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(180deg, #1a0f05, #2a1505);
+    border-bottom: 2px solid var(--gold);
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 2rem; overflow-x: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  nav button {
+    background: none; border: 1px solid transparent;
+    color: var(--stone-light); font-family: 'Cinzel', serif;
+    font-size: 0.78rem; letter-spacing: 1px; padding: 0.5rem 1rem;
+    cursor: pointer; white-space: nowrap; border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  nav button:hover, nav button.active {
+    color: var(--gold-bright); border-color: var(--gold);
+    background: rgba(200,146,10,0.1);
+  }
+
+  nav .nav-sep { color: var(--gold); opacity: 0.4; font-size: 1.2rem; }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-header {
+    background: linear-gradient(180deg, #1a0f05 0%, #2a1810 100%);
+    padding: 4rem 2rem 3rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+
+  .section-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(200,146,10,0.2) 0%, transparent 70%);
+  }
+
+  .section-header h2 {
+    font-family: 'Cinzel', serif; font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--parchment);
+    text-shadow: 0 0 30px rgba(200,146,10,0.4);
+    position: relative;
+  }
+
+  .section-header .subtitle {
+    color: var(--stone-light); font-style: italic;
+    font-size: 1.1rem; margin-top: 0.5rem; position: relative;
+  }
+
+  .ornament { color: var(--gold); font-size: 1.5rem; margin: 0 0.5rem; }
+
+  /* CONTENT AREA */
+  .content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding: 2rem 0; }
+
+  .timeline::before {
+    content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 3px; transform: translateX(-50%);
+    background: linear-gradient(180deg, transparent, var(--gold), var(--gold), transparent);
+  }
+
+  .timeline-item {
+    display: flex; align-items: flex-start; gap: 2rem;
+    margin-bottom: 3rem; position: relative;
+    animation: fadeIn 0.6s ease both;
+  }
+
+  .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+
+  .timeline-item:nth-child(odd) .tl-card { text-align: right; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tl-card {
+    flex: 1; background: linear-gradient(135deg, #2a1505, #1a0f02);
+    border: 1px solid var(--gold); border-radius: 4px;
+    padding: 1.5rem; color: var(--parchment);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .tl-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(200,146,10,0.3);
+  }
+
+  .tl-year {
+    font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 900;
+    color: var(--gold-bright); margin-bottom: 0.3rem;
+  }
+
+  .tl-title {
+    font-family: 'Cinzel', serif; font-size: 1rem;
+    color: var(--parchment); margin-bottom: 0.5rem;
+  }
+
+  .tl-desc { font-size: 0.95rem; color: var(--stone-light); line-height: 1.6; }
+
+  .tl-dot {
+    width: 20px; height: 20px; background: var(--gold);
+    border-radius: 50%; border: 3px solid var(--crimson);
+    flex-shrink: 0; margin-top: 1.5rem;
+    box-shadow: 0 0 10px var(--gold);
+    position: relative; z-index: 2;
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 2rem;
+  }
+
+  .info-card {
+    background: linear-gradient(145deg, #2a1505, #1a0f02);
+    border: 1px solid rgba(200,146,10,0.4); border-radius: 4px;
+    overflow: hidden; transition: all 0.3s; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+
+  .info-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(200,146,10,0.25);
+  }
+
+  .card-icon {
+    background: linear-gradient(135deg, var(--crimson), #5a0f0f);
+    padding: 1.5rem; text-align: center; font-size: 3rem;
+  }
+
+  .card-body { padding: 1.5rem; }
+
+  .card-title {
+    font-family: 'Cinzel', serif; font-size: 1.1rem;
+    color: var(--gold-bright); margin-bottom: 0.7rem;
+  }
+
+  .card-text { color: var(--stone-light); font-size: 0.95rem; line-height: 1.7; }
+
+  .card-expand {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s;
+    color: var(--parchment); font-size: 0.9rem; line-height: 1.7;
+  }
+
+  .card-expand.open { max-height: 300px; padding-top: 0.7rem; }
+
+  .card-toggle {
+    display: inline-block; margin-top: 0.8rem;
+    color: var(--gold); font-size: 0.85rem; cursor: pointer;
+    font-family: 'Cinzel', serif; letter-spacing: 1px;
+  }
+
+  /* QUIZ SECTION */
+  .quiz-container { max-width: 700px; margin: 0 auto; }
+
+  .quiz-progress {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+  }
+
+  .progress-bar {
+    flex: 1; height: 8px; background: rgba(200,146,10,0.2);
+    border-radius: 4px; overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--crimson), var(--gold));
+    border-radius: 4px; transition: width 0.5s ease;
+  }
+
+  .progress-text { font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.9rem; }
+
+  .question-card {
+    background: linear-gradient(145deg, #2a1505, #1a0f02);
+    border: 2px solid var(--gold); border-radius: 6px;
+    padding: 2.5rem; color: var(--parchment);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    position: relative; overflow: hidden;
+  }
+
+  .question-card::before {
+    content: '⚔️'; position: absolute; top: 1rem; right: 1.5rem;
+    font-size: 2rem; opacity: 0.2;
+  }
+
+  .question-num {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.85rem;
+    letter-spacing: 2px; margin-bottom: 0.8rem;
+  }
+
+  .question-text {
+    font-size: 1.3rem; font-weight: 600; margin-bottom: 2rem; line-height: 1.5;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .option-btn {
+    background: rgba(200,146,10,0.08); border: 1px solid rgba(200,146,10,0.3);
+    color: var(--parchment); padding: 1rem 1.5rem;
+    text-align: left; cursor: pointer; border-radius: 4px;
+    font-family: 'Crimson Text', serif; font-size: 1.05rem;
+    transition: all 0.2s; display: flex; align-items: center; gap: 1rem;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    background: rgba(200,146,10,0.2); border-color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  .option-btn.correct { background: rgba(26,74,26,0.6); border-color: #4a9a4a; }
+  .option-btn.wrong { background: rgba(139,26,26,0.5); border-color: var(--crimson); }
+  .option-btn:disabled { cursor: default; }
+
+  .option-letter {
+    width: 28px; height: 28px; background: rgba(200,146,10,0.2);
+    border: 1px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .feedback {
+    margin-top: 1.5rem; padding: 1rem 1.5rem; border-radius: 4px;
+    font-size: 1rem; line-height: 1.5; display: none;
+  }
+
+  .feedback.show { display: block; animation: fadeIn 0.3s ease; }
+  .feedback.correct { background: rgba(26,74,26,0.4); border: 1px solid #4a9a4a; color: #a0d8a0; }
+  .feedback.wrong { background: rgba(139,26,26,0.3); border: 1px solid var(--crimson); color: #f0a0a0; }
+
+  .next-btn {
+    margin-top: 1.5rem; background: var(--crimson);
+    border: 2px solid var(--gold); color: var(--parchment);
+    font-family: 'Cinzel', serif; padding: 0.8rem 2rem;
+    cursor: pointer; border-radius: 3px; font-size: 0.9rem;
+    letter-spacing: 1px; display: none; transition: all 0.3s;
+  }
+
+  .next-btn.show { display: inline-block; }
+  .next-btn:hover { background: #a01a1a; transform: translateY(-2px); }
+
+  .score-card {
+    background: linear-gradient(145deg, #2a1505, #1a0f02);
+    border: 3px solid var(--gold); border-radius: 6px;
+    padding: 3rem; text-align: center; color: var(--parchment);
+    display: none;
+    box-shadow: 0 0 60px rgba(200,146,10,0.3);
+  }
+
+  .score-card.show { display: block; animation: fadeIn 0.5s ease; }
+  .score-big { font-size: 5rem; font-family: 'Cinzel', serif; color: var(--gold-bright); }
+  .score-label { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--stone-light); margin-bottom: 1rem; }
+  .score-msg { font-style: italic; font-size: 1.1rem; margin-bottom: 2rem; }
+  .retry-btn {
+    background: var(--crimson); border: 2px solid var(--gold);
+    color: var(--parchment); font-family: 'Cinzel', serif;
+    padding: 0.9rem 2.5rem; cursor: pointer; border-radius: 3px;
+    font-size: 1rem; letter-spacing: 2px; transition: all 0.3s;
+  }
+  .retry-btn:hover { background: #a01a1a; transform: translateY(-3px); }
+
+  /* MAPA FEUDAL */
+  .feudal-pyramid {
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+    padding: 2rem 0; max-width: 600px; margin: 0 auto;
+  }
+
+  .pyramid-level {
+    width: 100%; border: 2px solid var(--gold);
+    background: linear-gradient(135deg, #2a1505, #1a0f02);
+    color: var(--parchment); text-align: center; padding: 1.2rem;
+    cursor: pointer; transition: all 0.3s; position: relative;
+    overflow: hidden;
+  }
+
+  .pyramid-level::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(200,146,10,0), rgba(200,146,10,0.15));
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .pyramid-level:hover::before { opacity: 1; }
+  .pyramid-level:hover { transform: scale(1.02); z-index: 2; }
+
+  .pl-1 { width: 25%; clip-path: polygon(10% 100%, 90% 100%, 75% 0%, 25% 0%); padding-top: 1.5rem; }
+  .pl-2 { width: 45%; }
+  .pl-3 { width: 65%; }
+  .pl-4 { width: 85%; }
+  .pl-5 { width: 100%; }
+
+  .pyramid-title {
+    font-family: 'Cinzel', serif; font-size: 0.95rem;
+    color: var(--gold-bright); font-weight: 600;
+  }
+
+  .pyramid-detail {
+    font-size: 0.85rem; color: var(--stone-light); margin-top: 0.3rem;
+    max-height: 0; overflow: hidden; transition: max-height 0.4s;
+  }
+
+  .pyramid-level.open .pyramid-detail { max-height: 100px; }
+  .pyramid-arrow { color: var(--gold); font-size: 0.8rem; margin-top: 0.4rem; transition: transform 0.3s; }
+  .pyramid-level.open .pyramid-arrow { transform: rotate(180deg); }
+
+  /* DRAG & DROP */
+  .drag-container {
+    display: flex; flex-wrap: wrap; gap: 2rem;
+    justify-content: center; padding: 2rem 0;
+  }
+
+  .drag-box {
+    background: linear-gradient(145deg, #2a1505, #1a0f02);
+    border: 2px solid rgba(200,146,10,0.4); border-radius: 6px;
+    padding: 1.5rem; min-width: 220px; flex: 1; min-height: 180px;
+    color: var(--parchment);
+  }
+
+  .drag-box h4 {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.9rem;
+    margin-bottom: 1rem; letter-spacing: 1px; border-bottom: 1px solid rgba(200,146,10,0.3);
+    padding-bottom: 0.5rem;
+  }
+
+  .drag-items { display: flex; flex-wrap: wrap; gap: 0.5rem; min-height: 60px; }
+
+  .drag-item {
+    background: linear-gradient(135deg, var(--crimson), #5a0f0f);
+    border: 1px solid rgba(200,146,10,0.5); border-radius: 3px;
+    padding: 0.4rem 0.8rem; cursor: grab;
+    font-size: 0.9rem; color: var(--parchment);
+    transition: all 0.2s; user-select: none;
+  }
+
+  .drag-item:hover { transform: scale(1.05); border-color: var(--gold); }
+  .drag-item.dragging { opacity: 0.5; transform: scale(1.1); }
+
+  .drop-zone {
+    min-height: 80px; border: 2px dashed rgba(200,146,10,0.3);
+    border-radius: 4px; padding: 0.5rem; display: flex;
+    flex-wrap: wrap; gap: 0.4rem; align-content: flex-start;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .drop-zone.dragover {
+    border-color: var(--gold-bright);
+    background: rgba(200,146,10,0.1);
+  }
+
+  .check-drag-btn {
+    background: var(--forest); border: 2px solid #4a9a4a;
+    color: #a0d8a0; font-family: 'Cinzel', serif;
+    padding: 0.8rem 2rem; cursor: pointer; border-radius: 3px;
+    font-size: 0.9rem; letter-spacing: 1px; margin: 1rem auto;
+    display: block; transition: all 0.3s;
+  }
+
+  .check-drag-btn:hover { background: #2a6a2a; transform: translateY(-2px); }
+
+  .drag-result {
+    text-align: center; font-family: 'Cinzel', serif;
+    font-size: 1rem; padding: 0.8rem; border-radius: 4px;
+    margin-top: 1rem; display: none;
+  }
+
+  .drag-result.show { display: block; animation: fadeIn 0.3s; }
+  .drag-result.good { background: rgba(26,74,26,0.4); color: #a0d8a0; border: 1px solid #4a9a4a; }
+  .drag-result.bad { background: rgba(139,26,26,0.3); color: #f0a0a0; border: 1px solid var(--crimson); }
+
+  /* GLOSARIO */
+  .glossary-search {
+    background: rgba(200,146,10,0.1); border: 1px solid var(--gold);
+    color: var(--parchment); padding: 0.9rem 1.5rem; width: 100%;
+    max-width: 400px; border-radius: 4px; font-family: 'Crimson Text', serif;
+    font-size: 1.05rem; outline: none; margin-bottom: 2rem;
+    display: block; margin-left: auto; margin-right: auto;
+  }
+
+  .glossary-search::placeholder { color: var(--stone-light); }
+  .glossary-search:focus { border-color: var(--gold-bright); box-shadow: 0 0 10px var(--glow); }
+
+  .glossary-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .glossary-item {
+    background: linear-gradient(145deg, #2a1505, #1a0f02);
+    border: 1px solid rgba(200,146,10,0.3); border-radius: 4px;
+    padding: 1.2rem; transition: all 0.3s;
+  }
+
+  .glossary-item:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .glossary-item.hidden { display: none; }
+
+  .glos-term {
+    font-family: 'Cinzel', serif; color: var(--gold-bright);
+    font-size: 1rem; margin-bottom: 0.5rem;
+  }
+
+  .glos-def { color: var(--stone-light); font-size: 0.9rem; line-height: 1.6; }
+
+  /* SCORE TRACKER */
+  .score-tracker {
+    position: fixed; bottom: 1rem; right: 1rem;
+    background: linear-gradient(135deg, #2a1505, #1a0f02);
+    border: 2px solid var(--gold); border-radius: 6px;
+    padding: 0.8rem 1.2rem; z-index: 200;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 0.85rem;
+  }
+
+  .score-tracker .pts { font-size: 1.3rem; font-weight: 900; color: var(--gold-bright); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .timeline::before { left: 10px; }
+    .timeline-item { flex-direction: column !important; padding-left: 2.5rem; }
+    .timeline-item .tl-card { text-align: left !important; }
+    .tl-dot { position: absolute; left: 0; margin-top: 1.5rem; }
+    .pl-1, .pl-2, .pl-3, .pl-4, .pl-5 { width: 100%; clip-path: none; }
+  }
+
+  .section-intro {
+    background: linear-gradient(145deg, #2a1505, #1a0f02);
+    border-left: 4px solid var(--gold); padding: 1.2rem 1.5rem;
+    color: var(--parchment); border-radius: 0 4px 4px 0;
+    font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="stars" id="stars"></div>
+  <div class="castle-silhouette"></div>
+  <div class="hero-content">
+    <div class="era-badge">✦ Historia Universal ✦</div>
+    <h1>LA <span>EDAD</span><br>MEDIA</h1>
+    <p class="hero-subtitle">Siglos V al XV — Del Imperio Romano a la Modernidad</p>
+    <div class="date-banner">⚔️ 476 d.C. — 1453 d.C. ⚔️</div>
+    <button class="scroll-btn" onclick="enterApp()">⚜ Comenzar el Viaje ⚜</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="main" id="app" style="display:none">
+
+  <nav id="nav">
+    <button onclick="showSection('timeline')" class="active">📜 Cronología</button>
+    <span class="nav-sep">✦</span>
+    <button onclick="showSection('sociedad')">🏰 Sociedad</button>
+    <span class="nav-sep">✦</span>
+    <button onclick="showSection('cultura')">⛪ Cultura</button>
+    <span class="nav-sep">✦</span>
+    <button onclick="showSection('actividad')">🎯 Actividad</button>
+    <span class="nav-sep">✦</span>
+    <button onclick="showSection('quiz')">⚔️ Quiz</button>
+    <span class="nav-sep">✦</span>
+    <button onclick="showSection('glosario')">📖 Glosario</button>
+  </nav>
+
+  <!-- CRONOLOGÍA -->
+  <div class="section active" id="section-timeline">
+    <div class="section-header">
+      <h2><span class="ornament">⚜</span> Línea del Tiempo <span class="ornament">⚜</span></h2>
+      <p class="subtitle">Los grandes eventos que marcaron mil años de historia</p>
+    </div>
+    <div class="content">
+      <p class="section-intro">💡 Haz clic en cada evento para explorar los detalles. La Edad Media duró aproximadamente 1000 años, desde la caída del Imperio Romano de Occidente hasta la toma de Constantinopla.</p>
+      <div class="timeline">
+
+        <div class="timeline-item" style="--d:0.1s">
+          <div class="tl-card" onclick="this.classList.toggle('expanded')">
+            <div class="tl-year">476 d.C.</div>
+            <div class="tl-title">Caída del Imperio Romano de Occidente</div>
+            <div class="tl-desc">Rómulo Augústulo, el último emperador romano de Occidente, es depuesto por el caudillo bárbaro Odoacro. Este evento marca el inicio oficial de la Edad Media.</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.15s">
+          <div style="flex:1"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-year">496 d.C.</div>
+            <div class="tl-title">Bautismo de Clodoveo I</div>
+            <div class="tl-desc">El rey franco Clodoveo I se convierte al cristianismo, sellando la alianza entre la Iglesia Católica y los reinos germánicos. Este hecho moldea la cultura europea medieval.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.2s">
+          <div class="tl-card">
+            <div class="tl-year">622 d.C.</div>
+            <div class="tl-title">La Hégira — Inicio del Islam</div>
+            <div class="tl-desc">Mahoma emigra de La Meca a Medina. El Islam surge como nueva religión y potencia política que transformará el mundo mediterráneo y tendrá enorme influencia en Europa medieval.</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.25s">
+          <div style="flex:1"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-year">800 d.C.</div>
+            <div class="tl-title">Coronación de Carlomagno</div>
+            <div class="tl-desc">Carlomagno es coronado Emperador de los Romanos por el Papa León III. Unifica gran parte de Europa occidental y fomenta la educación y la cultura en el llamado Renacimiento Carolingio.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.3s">
+          <div class="tl-card">
+            <div class="tl-year">1066 d.C.</div>
+            <div class="tl-title">Conquista Normanda de Inglaterra</div>
+            <div class="tl-desc">Guillermo el Conquistador, duque de Normandía, derrota al rey Harold II en la Batalla de Hastings. Establece el feudalismo en Inglaterra y transforma la lengua y cultura inglesas.</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.35s">
+          <div style="flex:1"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-year">1096 d.C.</div>
+            <div class="tl-title">Primera Cruzada</div>
+            <div class="tl-desc">El Papa Urbano II convoca la Primera Cruzada. Miles de guerreros europeos marchan hacia Tierra Santa para recuperar Jerusalén. Las Cruzadas durarán 200 años y conectarán Oriente y Occidente.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.4s">
+          <div class="tl-card">
+            <div class="tl-year">1215 d.C.</div>
+            <div class="tl-title">Carta Magna</div>
+            <div class="tl-desc">El rey Juan I de Inglaterra firma la Magna Carta, primer documento que limita el poder del monarca y reconoce derechos de los nobles. Antecedente fundamental del constitucionalismo moderno.</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.45s">
+          <div style="flex:1"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-year">1347 d.C.</div>
+            <div class="tl-title">La Peste Negra</div>
+            <div class="tl-desc">La epidemia de peste bubónica llega a Europa. En solo tres años, mató entre un tercio y la mitad de la población europea — una catástrofe demográfica sin precedentes que transformó la sociedad medieval.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item" style="animation-delay:0.5s">
+          <div class="tl-card">
+            <div class="tl-year">1453 d.C.</div>
+            <div class="tl-title">Caída de Constantinopla</div>
+            <div class="tl-desc">Los turcos otomanos del sultán Mehmed II conquistan Constantinopla, poniendo fin al Imperio Romano de Oriente (Bizancio). Este evento marca convencionalmente el final de la Edad Media.</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIEDAD -->
+  <div class="section" id="section-sociedad">
+    <div class="section-header">
+      <h2><span class="ornament">⚜</span> La Sociedad Feudal <span class="ornament">⚜</span></h2>
+      <p class="subtitle">La organización del poder y las clases sociales</p>
+    </div>
+    <div class="content">
+      <p class="section-intro">💡 La sociedad medieval se organizaba como una pirámide. Haz clic en cada nivel para descubrir el rol de cada clase social. ¿Quién tenía el poder? ¿Quién trabajaba la tierra?</p>
+
+      <div class="feudal-pyramid">
+        <div class="pyramid-level pl-1" onclick="togglePyramid(this)">
+          <div class="pyramid-title">👑 Rey</div>
+          <div class="pyramid-detail">Máxima autoridad del reino. Otorgaba tierras a los nobles a cambio de lealtad y servicio militar. Su poder era legitimado por la Iglesia.</div>
+          <div class="pyramid-arrow">▼</div>
+        </div>
+        <div class="pyramid-level pl-2" onclick="togglePyramid(this)">
+          <div class="pyramid-title">🏰 Alta Nobleza — Duques y Condes</div>
+          <div class="pyramid-detail">Los grandes señores que recibían vastos territorios del rey (feudos). Administraban justicia y mantenían ejércitos propios. Eran los vasallos directos del monarca.</div>
+          <div class="pyramid-arrow">▼</div>
+        </div>
+        <div class="pyramid-level pl-3" onclick="togglePyramid(this)">
+          <div class="pyramid-title">⛪ Iglesia + Caballeros</div>
+          <div class="pyramid-detail">La Iglesia controlaba tierras, educación y vida espiritual. Los caballeros (miles) eran guerreros a caballo que servían a los nobles. Seguían el Código de Caballería.</div>
+          <div class="pyramid-arrow">▼</div>
+        </div>
+        <div class="pyramid-level pl-4" onclick="togglePyramid(this)">
+          <div class="pyramid-title">🏘️ Burgueses y Artesanos</div>
+          <div class="pyramid-detail">Surgieron con el crecimiento de las ciudades medievales. Comerciantes, artesanos organizados en gremios. La burguesía crecería hasta transformar la sociedad medieval.</div>
+          <div class="pyramid-arrow">▼</div>
+        </div>
+        <div class="pyramid-level pl-5" onclick="togglePyramid(this)">
+          <div class="pyramid-title">🌾 Siervos y Campesinos — El 90% de la Población</div>
+          <div class="pyramid-detail">Trabajaban la tierra del señor a cambio de protección. Los siervos estaban atados a la tierra (no podían abandonarla). Pagaban tributos en trabajo, productos o dinero. Vivían en condiciones muy duras.</div>
+          <div class="pyramid-arrow">▼</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Cinzel',serif; color:var(--ink); margin: 2rem 0 1rem; text-align:center; font-size:1.4rem;">🏰 Las Instituciones Medievales</h3>
+      <div class="cards-grid">
+        <div class="info-card">
+          <div class="card-icon">⚔️</div>
+          <div class="card-body">
+            <div class="card-title">El Feudalismo</div>
+            <div class="card-text">Sistema político y económico basado en la posesión de la tierra a cambio de servicios y lealtad.</div>
+            <div class="card-expand">El señor feudal otorgaba tierras (feudo) a cambio de servicio militar y fidelidad. Esta relación se sellaba con el juramento de vasallaje. El feudo incluía las tierras y los campesinos que las trabajaban. El sistema creó una red de obligaciones mutuas que estructuró toda la sociedad medieval.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">⛪</div>
+          <div class="card-body">
+            <div class="card-title">La Iglesia Católica</div>
+            <div class="card-text">La institución más poderosa de la Edad Media. Controlaba espiritualidad, educación y política.</div>
+            <div class="card-expand">El Papa tenía autoridad sobre los reyes en asuntos espirituales e incluso políticos. La Iglesia poseía hasta 1/3 de las tierras europeas. Los monasterios conservaban el conocimiento y educaban a los pocos letrados. La excomunión era el castigo más temido: excluía a una persona de los sacramentos y la comunidad cristiana.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🛡️</div>
+          <div class="card-body">
+            <div class="card-title">La Caballería</div>
+            <div class="card-text">Los guerreros a caballo que defendían el orden feudal bajo un estricto código de honor y valores.</div>
+            <div class="card-expand">Un caballero debía ser valiente, leal a su señor, proteger a los débiles y defender la fe cristiana. El proceso de entrenamiento duraba años: paje (7 años), escudero (14 años), caballero (21 años). El torneo era una práctica de combate que se convirtió en espectáculo social. Los Caballeros de las Cruzadas formaron órdenes militares religiosas.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🏪</div>
+          <div class="card-body">
+            <div class="card-title">Los Gremios</div>
+            <div class="card-text">Organizaciones de artesanos y comerciantes que regulaban la producción y el comercio urbano.</div>
+            <div class="card-expand">Con el renacer urbano (siglos XI-XII), los artesanos se organizaron en gremios según su oficio: herreros, tejedores, zapateros, panaderos... Los gremios controlaban la calidad, los precios y el acceso al oficio. Un aprendiz trabajaba años bajo un maestro para convertirse en oficial y luego maestro. Los gremios fueron el origen de los sindicatos modernos.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURA -->
+  <div class="section" id="section-cultura">
+    <div class="section-header">
+      <h2><span class="ornament">⚜</span> Arte y Cultura <span class="ornament">⚜</span></h2>
+      <p class="subtitle">La expresión del espíritu medieval</p>
+    </div>
+    <div class="content">
+      <p class="section-intro">💡 La Edad Media produjo obras extraordinarias de arte, arquitectura y pensamiento. Explora los grandes legados culturales de este período.</p>
+      <div class="cards-grid">
+        <div class="info-card">
+          <div class="card-icon">🏛️</div>
+          <div class="card-body">
+            <div class="card-title">Arquitectura Románica</div>
+            <div class="card-text">Siglos X-XII. Iglesias de muros gruesos, arcos de medio punto y torres sólidas que transmitían fuerza y solidez espiritual.</div>
+            <div class="card-expand">El estilo románico usa bóvedas de cañón, muros muy gruesos (para sostener el peso) y ventanas pequeñas. Las iglesias eran oscuras y sus esculturas enseñaban la Biblia a los fieles que no sabían leer. El Camino de Santiago impulsó la construcción de iglesias románicas por toda Europa. Ejemplo: Santiago de Compostela.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">✨</div>
+          <div class="card-body">
+            <div class="card-title">Arquitectura Gótica</div>
+            <div class="card-text">Siglos XII-XV. Catedrales que parecen tocar el cielo con sus agujas, vitrales de colores y arcos apuntados.</div>
+            <div class="card-expand">El gótico resuelve el problema del peso con el arbotante (arco exterior que transfiere el peso). Esto permite muros delgados con enormes vidrieras de colores que llenan de luz el interior. La catedral gótica era el símbolo del poder de la ciudad: Notre Dame de París, la Catedral de Burgos, la de Colonia. "Biblia de piedra y luz" para los fieles.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">📚</div>
+          <div class="card-body">
+            <div class="card-title">Los Manuscritos Iluminados</div>
+            <div class="card-text">Los monjes copiaban libros a mano y los decoraban con miniaturas doradas y coloridas. Un tesoro de conocimiento.</div>
+            <div class="card-expand">Antes de la imprenta, todos los libros se copiaban a mano en los scriptoria de los monasterios. Los monjes usaban pergamino (piel de animal) y decoraban las páginas con ilustraciones llamadas iluminaciones (usando pan de oro). Un libro podía tardar años en copiarse. Los monasterios preservaron gran parte del conocimiento de la Antigüedad.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🎓</div>
+          <div class="card-body">
+            <div class="card-title">Las Universidades</div>
+            <div class="card-text">La Edad Media creó las primeras universidades del mundo. Bolonia (1088) y París (1150) fueron las pioneras.</div>
+            <div class="card-expand">Las universidades medievales nacen de las escuelas catedralicias. El currículo incluía el Trivium (gramática, retórica, lógica) y el Quadrivium (aritmética, geometría, música, astronomía). La Escolástica, liderada por Santo Tomás de Aquino, intentó armonizar la fe cristiana con la razón aristotélica. Las universidades eran comunidades de maestros y estudiantes con cierta autonomía.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">⚗️</div>
+          <div class="card-body">
+            <div class="card-title">Ciencia y Filosofía</div>
+            <div class="card-text">La Edad Media no fue oscura para la ciencia. Árabes y europeos hicieron grandes avances en matemáticas, medicina y filosofía.</div>
+            <div class="card-expand">Los árabes preservaron y tradujeron a los griegos clásicos. Avicena escribió el Canon de Medicina, texto de referencia por siglos. Roger Bacon propuso el método experimental. Alberto Magno estudió la naturaleza sistemáticamente. La numeración arábiga (que usamos hoy) llegó a Europa en este período, revolucionando las matemáticas.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">🎵</div>
+          <div class="card-body">
+            <div class="card-title">Música y Literatura</div>
+            <div class="card-text">Los trovadores cantaban poemas de amor cortés y los juglares entretenían al pueblo con hazañas de héroes.</div>
+            <div class="card-expand">Los trovadores del sur de Francia inventaron la poesía lírica occidental. El amor cortés idealizaba a la dama y el caballero enamorado. Las chansons de geste narraban hazañas heroicas: La Chanson de Roland, el Cantar de Mío Cid. La Divina Comedia de Dante (1320) es la obra cumbre de la literatura medieval: un viaje por el Infierno, el Purgatorio y el Paraíso.</div>
+            <span class="card-toggle" onclick="toggleCard(this)">Leer más ▼</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVIDAD DRAG & DROP -->
+  <div class="section" id="section-actividad">
+    <div class="section-header">
+      <h2><span class="ornament">⚜</span> Actividad Interactiva <span class="ornament">⚜</span></h2>
+      <p class="subtitle">¡Pon a prueba lo que aprendiste!</p>
+    </div>
+    <div class="content">
+      <p class="section-intro">🎯 <strong>Instrucción:</strong> Arrastra cada personaje o elemento a la categoría correcta de la sociedad medieval. Cuando termines, haz clic en "Verificar".</p>
+
+      <div class="drag-container">
+        <div class="drag-box">
+          <h4>📦 Elementos para clasificar</h4>
+          <div class="drag-items" id="source-items">
+            <div class="drag-item" draggable="true" data-cat="nobleza" data-id="1">👑 Rey Felipe</div>
+            <div class="drag-item" draggable="true" data-cat="iglesia" data-id="2">⛪ Obispo Pedro</div>
+            <div class="drag-item" draggable="true" data-cat="campesinos" data-id="3">🌾 Siervo Juan</div>
+            <div class="drag-item" draggable="true" data-cat="nobleza" data-id="4">🏰 Duque Roberto</div>
+            <div class="drag-item" draggable="true" data-cat="burguesia" data-id="5">🪙 Mercader Luis</div>
+            <div class="drag-item" draggable="true" data-cat="iglesia" data-id="6">📿 Monje Bernardo</div>
+            <div class="drag-item" draggable="true" data-cat="campesinos" data-id="7">🪚 Artesano Marco</div>
+            <div class="drag-item" draggable="true" data-cat="nobleza" data-id="8">⚔️ Caballero Rodrigo</div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:1rem; flex:2">
+          <div class="drag-box">
+            <h4>👑 Nobleza</h4>
+            <div class="drop-zone" data-accepts="nobleza" id="zone-nobleza"></div>
+          </div>
+          <div class="drag-box">
+            <h4>⛪ Clero</h4>
+            <div class="drop-zone" data-accepts="iglesia" id="zone-iglesia"></div>
+          </div>
+          <div class="drag-box">
+            <h4>🌾 Campesinado</h4>
+            <div class="drop-zone" data-accepts="campesinos" id="zone-campesinos"></div>
+          </div>
+          <div class="drag-box">
+            <h4>🏘️ Burguesía</h4>
+            <div class="drop-zone" data-accepts="burguesia" id="zone-burguesia"></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="check-drag-btn" onclick="checkDrag()">✅ Verificar Clasificación</button>
+      <div class="drag-result" id="drag-result"></div>
+
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section" id="section-quiz">
+    <div class="section-header">
+      <h2><span class="ornament">⚜</span> Quiz Medieval <span class="ornament">⚜</span></h2>
+      <p class="subtitle">Demuestra tu conocimiento — ¡Gana puntos de honor!</p>
+    </div>
+    <div class="content">
+      <div class="quiz-container">
+        <div id="quiz-area">
+          <div class="quiz-progress">
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+            <span class="progress-text" id="progress-text">Pregunta 1 / 8</span>
+          </div>
+          <div class="question-card" id="question-card">
+            <div class="question-num" id="q-num">PREGUNTA 1 DE 8</div>
+            <div class="question-text" id="q-text"></div>
+            <div class="options" id="q-options"></div>
+            <div class="feedback" id="q-feedback"></div>
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">Siguiente Pregunta →</button>
+          </div>
+        </div>
+        <div class="score-card" id="score-card">
+          <div style="font-size:2rem; margin-bottom:0.5rem">🏆</div>
+          <div class="score-big" id="final-score">0/8</div>
+          <div class="score-label">Puntos de Honor Ganados</div>
+          <div class="score-msg" id="score-msg"></div>
+          <button class="retry-btn" onclick="resetQuiz()">⚔️ Intentar de Nuevo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOSARIO -->
+  <div class="section" id="section-glosario">
+    <div class="section-header">
+      <h2><span class="ornament">⚜</span> Glosario Medieval <span class="ornament">⚜</span></h2>
+      <p class="subtitle">Vocabulario esencial de la Edad Media</p>
+    </div>
+    <div class="content">
+      <input type="text" class="glossary-search" placeholder="🔍 Buscar término..." oninput="filterGlossary(this.value)">
+      <div class="glossary-grid" id="glossary-grid"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCORE TRACKER -->
+<div class="score-tracker" id="score-tracker" style="display:none">
+  🏆 Puntos: <span class="pts" id="total-pts">0</span>
+</div>
+
+<script>
+// ===== STARS =====
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${-Math.random()*4}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
+  starsEl.appendChild(s);
+}
+
+// ===== NAVIGATION =====
+function enterApp() {
+  document.getElementById('hero').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('score-tracker').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ===== POINTS =====
+let totalPoints = 0;
+function addPoints(pts) {
+  totalPoints += pts;
+  document.getElementById('total-pts').textContent = totalPoints;
+  const tracker = document.getElementById('score-tracker');
+  tracker.style.transform = 'scale(1.2)';
+  tracker.style.borderColor = '#f0b429';
+  setTimeout(() => { tracker.style.transform = 'scale(1)'; tracker.style.borderColor = ''; }, 400);
+}
+
+// ===== PYRAMID =====
+function togglePyramid(el) {
+  el.classList.toggle('open');
+  if (el.classList.contains('open')) addPoints(2);
+}
+
+// ===== CARDS =====
+function toggleCard(btn) {
+  const expand = btn.previousElementSibling;
+  const open = expand.classList.toggle('open');
+  btn.textContent = open ? 'Leer menos ▲' : 'Leer más ▼';
+  if (open) addPoints(3);
+}
+
+// ===== DRAG & DROP =====
+let draggedEl = null;
+
+document.addEventListener('dragstart', e => {
+  if (e.target.classList.contains('drag-item')) {
+    draggedEl = e.target;
+    e.target.classList.add('dragging');
+  }
+});
+
+document.addEventListener('dragend', e => {
+  if (e.target.classList.contains('drag-item')) e.target.classList.remove('dragging');
+});
+
+document.addEventListener('dragover', e => {
+  e.preventDefault();
+  const zone = e.target.closest('.drop-zone');
+  if (zone) zone.classList.add('dragover');
+});
+
+document.addEventListener('dragleave', e => {
+  const zone = e.target.closest('.drop-zone');
+  if (zone) zone.classList.remove('dragover');
+});
+
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  const zone = e.target.closest('.drop-zone');
+  if (zone && draggedEl) {
+    zone.classList.remove('dragover');
+    zone.appendChild(draggedEl);
+  }
+});
+
+// Touch support for drag
+let touchItem = null;
+let ghost = null;
+
+document.addEventListener('touchstart', e => {
+  const item = e.target.closest('.drag-item');
+  if (!item) return;
+  touchItem = item;
+  ghost = item.cloneNode(true);
+  ghost.style.cssText = 'position:fixed;opacity:0.7;pointer-events:none;z-index:9999;transform:scale(1.1);';
+  document.body.appendChild(ghost);
+}, { passive: true });
+
+document.addEventListener('touchmove', e => {
+  if (!ghost) return;
+  const t = e.touches[0];
+  ghost.style.left = (t.clientX - 40) + 'px';
+  ghost.style.top = (t.clientY - 20) + 'px';
+}, { passive: true });
+
+document.addEventListener('touchend', e => {
+  if (!ghost || !touchItem) return;
+  const t = e.changedTouches[0];
+  ghost.remove(); ghost = null;
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  const zone = el && el.closest('.drop-zone');
+  if (zone) zone.appendChild(touchItem);
+  touchItem = null;
+});
+
+function checkDrag() {
+  const zones = document.querySelectorAll('.drop-zone');
+  let correct = 0, total = 0;
+  zones.forEach(zone => {
+    const accepts = zone.dataset.accepts;
+    zone.querySelectorAll('.drag-item').forEach(item => {
+      total++;
+      if (item.dataset.cat === accepts) {
+        correct++;
+        item.style.borderColor = '#4a9a4a';
+        item.style.background = 'linear-gradient(135deg,#1a4a1a,#0a2a0a)';
+      } else {
+        item.style.borderColor = '#c0392b';
+        item.style.background = 'linear-gradient(135deg,#5a0f0f,#2a0505)';
+      }
+    });
+  });
+
+  const result = document.getElementById('drag-result');
+  result.classList.add('show');
+  if (correct === 8) {
+    result.className = 'drag-result show good';
+    result.innerHTML = `⚔️ ¡Perfecto! Clasificaste todos correctamente (${correct}/${total}). +20 puntos de honor`;
+    addPoints(20);
+  } else if (correct >= 5) {
+    result.className = 'drag-result show good';
+    result.innerHTML = `✅ Bien hecho: ${correct}/${total} correctos. +${correct * 2} puntos. Revisa los elementos en rojo.`;
+    addPoints(correct * 2);
+  } else {
+    result.className = 'drag-result show bad';
+    result.innerHTML = `❌ ${correct}/${total} correctos. Revisa la pirámide social y vuelve a intentarlo. Los elementos correctos están en verde.`;
+  }
+}
+
+// ===== QUIZ =====
+const questions = [
+  {
+    q: "¿En qué año se produjo la caída del Imperio Romano de Occidente, fecha que marca el inicio convencional de la Edad Media?",
+    opts: ["395 d.C.", "476 d.C.", "500 d.C.", "410 d.C."],
+    correct: 1,
+    exp: "En el 476 d.C., el último emperador Rómulo Augústulo fue depuesto por Odoacro, marcando el fin oficial del Imperio Romano de Occidente."
+  },
+  {
+    q: "¿Cómo se llamaba el sistema político y económico basado en el intercambio de tierras por servicios y lealtad?",
+    opts: ["Capitalismo", "Feudalismo", "Mercantilismo", "Esclavismo"],
+    correct: 1,
+    exp: "El feudalismo fue el sistema que organizó la sociedad medieval: el señor otorgaba un feudo (tierra) al vasallo a cambio de lealtad y servicio militar."
+  },
+  {
+    q: "¿Cuál fue la gran epidemia que devastó Europa en el siglo XIV, matando entre un tercio y la mitad de su población?",
+    opts: ["Viruela", "Cólera", "Peste Negra", "Malaria"],
+    correct: 2,
+    exp: "La Peste Negra (1347-1351) fue causada por la bacteria Yersinia pestis. Llegó desde Asia y mató entre 25 y 50 millones de europeos, transformando radicalmente la sociedad medieval."
+  },
+  {
+    q: "¿Qué evento convencionalmente marca el FIN de la Edad Media?",
+    opts: ["La Reconquista española (1492)", "La caída de Constantinopla (1453)", "El descubrimiento de América (1492)", "La invención de la imprenta (1440)"],
+    correct: 1,
+    exp: "La caída de Constantinopla en 1453 ante los turcos otomanos puso fin al Imperio Bizantino (heredero del Romano de Oriente) y es el evento que la Historia usa para marcar el inicio de la Edad Moderna."
+  },
+  {
+    q: "¿Qué era un 'gremio' en la Edad Media?",
+    opts: ["Una orden militar religiosa", "Una asociación de artesanos o comerciantes de un mismo oficio", "Un consejo de nobles que aconsejaba al rey", "Un tipo de impuesto medieval"],
+    correct: 1,
+    exp: "Los gremios eran asociaciones de artesanos y comerciantes que regulaban la producción, la calidad y los precios de su oficio. Son un antecedente de los sindicatos modernos."
+  },
+  {
+    q: "¿Cuál fue el estilo arquitectónico gótico caracterizado por grandes vitrales, arcos apuntados y la sensación de ligereza y altura?",
+    opts: ["Siglos VIII y IX", "Siglos XII al XV", "Siglos I al IV", "Solo en el siglo X"],
+    correct: 1,
+    exp: "El estilo gótico floreció entre los siglos XII y XV. Sus grandes innovaciones —el arco apuntado y el arbotante— permitieron construir muros más delgados con enormes vitrales de colores."
+  },
+  {
+    q: "¿En qué año fue coronado Carlomagno como Emperador por el Papa León III?",
+    opts: ["800 d.C.", "768 d.C.", "987 d.C.", "750 d.C."],
+    correct: 0,
+    exp: "La noche de Navidad del año 800 d.C., el Papa León III coronó a Carlomagno como 'Emperador de los Romanos' en la Basílica de San Pedro en Roma, un hecho de enorme trascendencia política."
+  },
+  {
+    q: "¿Qué institución conservó el conocimiento escrito durante los siglos oscuros copiando manuscritos a mano?",
+    opts: ["Los castillos feudales", "Los monasterios", "Los mercados urbanos", "Los torneos de caballería"],
+    correct: 1,
+    exp: "Los monasterios, con sus scriptoria (salas de copia), preservaron gran parte del conocimiento de la Antigüedad. Los monjes copiaban textos religiosos y clásicos en pergamino, creando los valiosos manuscritos iluminados."
+  }
+];
+
+let currentQ = 0, score = 0, answered = false;
+
+function loadQuestion() {
+  answered = false;
+  const q = questions[currentQ];
+  document.getElementById('q-num').textContent = `PREGUNTA ${currentQ + 1} DE ${questions.length}`;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('progress-text').textContent = `Pregunta ${currentQ + 1} / ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${(currentQ / questions.length) * 100}%`;
+
+  const letters = ['A', 'B', 'C', 'D'];
+  document.getElementById('q-options').innerHTML = q.opts.map((opt, i) =>
+    `<button class="option-btn" onclick="answerQ(${i})">
+      <span class="option-letter">${letters[i]}</span>${opt}
+    </button>`
+  ).join('');
+
+  document.getElementById('q-feedback').className = 'feedback';
+  document.getElementById('q-feedback').textContent = '';
+  document.getElementById('next-btn').className = 'next-btn';
+}
+
+function answerQ(idx) {
+  if (answered) return;
+  answered = true;
+  const q = questions[currentQ];
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const fb = document.getElementById('q-feedback');
+  if (idx === q.correct) {
+    btns[idx].classList.add('correct');
+    fb.className = 'feedback correct show';
+    fb.textContent = `✅ ¡Correcto! ${q.exp}`;
+    score++;
+    addPoints(10);
+  } else {
+    btns[idx].classList.add('wrong');
+    btns[q.correct].classList.add('correct');
+    fb.className = 'feedback wrong show';
+    fb.textContent = `❌ Incorrecto. ${q.exp}`;
+  }
+  document.getElementById('next-btn').className = 'next-btn show';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= questions.length) {
+    document.getElementById('quiz-area').style.display = 'none';
+    document.getElementById('score-card').classList.add('show');
+    document.getElementById('final-score').textContent = `${score}/${questions.length}`;
+    const pct = score / questions.length;
+    const msgs = [
+      "Siervo sin tierras... ¡Sigue estudiando!",
+      "Artesano aprendiz — ¡Vas por buen camino!",
+      "Caballero en entrenamiento — ¡Buen esfuerzo!",
+      "Noble del conocimiento — ¡Excelente trabajo!",
+      "¡REY DEL SABER MEDIEVAL! 👑 ¡Glorioso!"
+    ];
+    document.getElementById('score-msg').textContent = msgs[Math.min(Math.floor(pct * 5), 4)];
+  } else {
+    loadQuestion();
+  }
+}
+
+function resetQuiz() {
+  currentQ = 0; score = 0;
+  document.getElementById('quiz-area').style.display = 'block';
+  document.getElementById('score-card').classList.remove('show');
+  loadQuestion();
+}
+
+// ===== GLOSSARY =====
+const glossaryTerms = [
+  { term: "Feudo", def: "Territorio concedido por un señor a un vasallo a cambio de servicios y lealtad. La unidad básica del sistema feudal." },
+  { term: "Vasallo", def: "Persona que juraba lealtad y servicio a un señor feudal a cambio de protección y tierras. Relación de dependencia mutua." },
+  { term: "Siervo", def: "Campesino atado a la tierra del señor. No era esclavo (no podía ser vendido), pero tampoco libre (no podía abandonar el feudo)." },
+  { term: "Feudo", def: "Tierra o beneficio concedido por un señor a un vasallo en el sistema feudal." },
+  { term: "Cruzadas", def: "Guerras religiosas convocadas por el Papa para recuperar los Santos Lugares de manos musulmanas (1096-1291). Hubo ocho Cruzadas principales." },
+  { term: "Gremio", def: "Asociación de artesanos o comerciantes del mismo oficio que regulaba la producción, calidad, precios y formación profesional." },
+  { term: "Escolástica", def: "Corriente filosófico-teológica medieval que intentó armonizar la fe cristiana con la razón (Aristóteles). Su mayor representante: Santo Tomás de Aquino." },
+  { term: "Scriptorium", def: "Sala de los monasterios donde los monjes copiaban e ilustraban manuscritos a mano. Centros de conservación del conocimiento." },
+  { term: "Arbotante", def: "Arco exterior en las catedrales góticas que transfiere el peso de la bóveda hacia los contrafuertes, permitiendo muros más ligeros y vitrales enormes." },
+  { term: "Excomunión", def: "El más grave castigo de la Iglesia: excluir a un cristiano de los sacramentos y la comunidad. Podía inclinar la balanza política entre reyes y papas." },
+  { term: "Trovador", def: "Poeta-músico de la Edad Media que componía y cantaba poemas de amor cortés, hazañas y sátira. Originarios del sur de Francia (Occitania)." },
+  { term: "Caballería", def: "Código de comportamiento de los caballeros medievales: valentía, lealtad, protección a los débiles y fe cristiana. Ideal social e inspiración literaria." },
+  { term: "Burguesía", def: "Clase social que surgió en las ciudades (burgos) medievales: mercaderes, artesanos y banqueros. Con el tiempo desafiaría el orden feudal." },
+  { term: "Papa", def: "Máxima autoridad de la Iglesia Católica. Durante la Edad Media tuvo enorme poder político, pudiendo coronar o deponer reyes." },
+  { term: "Reconquista", def: "Proceso de 700 años (711-1492) por el cual los reinos cristianos del norte de la Península Ibérica fueron recuperando el territorio en manos musulmanas." },
+  { term: "Vidriera", def: "Composición de vidrios de colores que narraban escenas bíblicas. Elemento característico de las catedrales góticas. 'La Biblia de los pobres' (analfabetos)." },
+  { term: "Bizancio", def: "Imperio Romano de Oriente con capital en Constantinopla. Sobrevivió 1000 años más que el de Occidente, hasta 1453. Conservó la cultura grecolatina." },
+  { term: "Islam", def: "Religión monoteísta fundada por Mahoma en el siglo VII. Expansión fulminante por Asia, África y Europa. Los califatos islámicos preservaron y desarrollaron ciencia y filosofía." }
+];
+
+function buildGlossary() {
+  const grid = document.getElementById('glossary-grid');
+  grid.innerHTML = glossaryTerms.map(t =>
+    `<div class="glossary-item">
+      <div class="glos-term">📜 ${t.term}</div>
+      <div class="glos-def">${t.def}</div>
+    </div>`
+  ).join('');
+}
+
+function filterGlossary(val) {
+  const v = val.toLowerCase();
+  document.querySelectorAll('.glossary-item').forEach(item => {
+    const term = item.querySelector('.glos-term').textContent.toLowerCase();
+    const def = item.querySelector('.glos-def').textContent.toLowerCase();
+    item.classList.toggle('hidden', v && !term.includes(v) && !def.includes(v));
+  });
+}
+
+// ===== INIT =====
+buildGlossary();
+loadQuestion();
+</script>
+</body>
+</html>
